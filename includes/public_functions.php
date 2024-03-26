@@ -1,18 +1,5 @@
 <?php 
 
-// function getPublishedRecipes() {
-//         // use global $conn object in function
-//         global $conn;
-//         $sql = "SELECT * FROM recipe WHERE published=true";
-//         $result = mysqli_query($conn, $sql);
-
-//         // fetch all recipes as an associative array called $recipes
-//         $recipes = mysqli_fetch_all($result, MYSQLI_ASSOC);
-
-//         return $recipes;
-// }
-
-
 function getPublishedRecipes() {
         // use global $conn object in function
         global $conn;
@@ -44,11 +31,12 @@ function getRecipe($slug){
         $recipe = mysqli_fetch_assoc($result);
         if ($recipe) {
                 // get the topic to which this recipe belongs
-                $recipe['category'] = getRecipeTopic($recipe['id']);
+                $recipe['category'] = getRecipeCategory($recipe['id']);
         }
         return $recipe;
 }
 
+//this fetches the category of the recipe
 function getRecipeCategory($recipe_id){
         global $conn;
         $sql = "SELECT * FROM category WHERE id=(SELECT category_id FROM recipe_category WHERE recipe_id=$recipe_id) LIMIT 1";
@@ -56,5 +44,42 @@ function getRecipeCategory($recipe_id){
         $category = mysqli_fetch_assoc($result);
         return $category;
 }
+
+
+// Returns all recipes under a category
+
+function getPublishedRecipesByCategory($recipe_id) {
+        global $conn;
+        $sql = "SELECT * FROM recipe rc
+                        WHERE rc.id IN 
+                        (SELECT rc.recipe_id FROM recipe_category rc
+                                WHERE rc.category_id=$recipe_id GROUP BY rc.recipe_id 
+                                HAVING COUNT(1) = 1)";
+        $result = mysqli_query($conn, $sql);
+        // fetch all recipes as an associative array called $recipes
+        $recipes = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+        $final_recipes = array();
+        foreach ($recipes as $recipe) {
+                $recipe['category'] = getRecipeCategory($recipe['id']); 
+                array_push($final_recipes, $recipe);
+        }
+        return $final_recipes;
+}
+//Returns category name by category id
+function getCategoryNameById($id)
+{
+        global $conn;
+        $sql = "SELECT name FROM category WHERE id=$id";
+        $result = mysqli_query($conn, $sql);
+        $category = mysqli_fetch_assoc($result);
+        return $category['name'];
+}
+
+
+
+
+
+
 
 ?>

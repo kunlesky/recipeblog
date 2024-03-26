@@ -4,7 +4,7 @@
         if (isset($_GET['post-slug'])) {
                 $recipe = getRecipe($_GET['recipe_slug']);
         }
-        $topics = getAllTopics();
+        $category = getAllCategories();
 ?>
 <?php include('includes/header.php'); ?>
 <title> <?php echo $recipe['title'] ?> | Recipe</title>
@@ -40,13 +40,13 @@
                 <div class="post-sidebar">
                         <div class="card">
                                 <div class="card-header">
-                                        <h2>Topics</h2>
+                                        <h2>Categories</h2>
                                 </div>
                                 <div class="card-content">
-                                        <?php foreach ($topics as $topic): ?>
+                                        <?php foreach ($categories as $category): ?>
                                                 <a 
-                                                        href="<?php echo BASE_URL . 'filtered_posts.php?topic=' . $topic['id'] ?>">
-                                                        <?php echo $topic['name']; ?>
+                                                        href="<?php echo BASE_URL . 'filtered_recipes.php?topic=' . $category['id'] ?>">
+                                                        <?php echo $category['name']; ?>
                                                 </a> 
                                         <?php endforeach ?>
                                 </div>
