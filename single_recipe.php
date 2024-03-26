@@ -1,8 +1,8 @@
 <?php  include('config.php'); ?>
 <?php  include('includes/public_functions.php'); ?>
 <?php 
-        if (isset($_GET['post-slug'])) {
-                $recipe = getRecipe($_GET['recipe_slug']);
+        if (isset($_GET['recipe-slug'])) {
+                $recipe = getRecipe($_GET['recipe-slug']);
         }
         $category = getAllCategories();
 ?>
@@ -43,7 +43,7 @@
                                         <h2>Categories</h2>
                                 </div>
                                 <div class="card-content">
-                                        <?php foreach ($categories as $category): ?>
+                                        <?php foreach ($category as $category): ?>
                                                 <a 
                                                         href="<?php echo BASE_URL . 'filtered_recipes.php?topic=' . $category['id'] ?>">
                                                         <?php echo $category['name']; ?>

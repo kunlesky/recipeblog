@@ -20,21 +20,21 @@ function getPublishedRecipes() {
 // more functions to come here ...
 
 //this will bring a single recipe
-function getRecipe($slug){
-        global $conn;
-        // Get single recipe slug
-        $recipe_slug = $_GET['recipe-slug'];
-        $sql = "SELECT * FROM recipe WHERE slug='$recipe_slug' AND published=true";
-        $result = mysqli_query($conn, $sql);
+// function getRecipe($slug){
+//         global $conn;
+//         // Get single recipe slug
+//         $recipe_slug = $_GET['recipe-slug'];
+//         $sql = "SELECT * FROM recipe WHERE slug='$recipe_slug' AND published=true";
+//         $result = mysqli_query($conn, $sql);
 
-        // fetch query results as associative array.
-        $recipe = mysqli_fetch_assoc($result);
-        if ($recipe) {
-                // get the topic to which this recipe belongs
-                $recipe['category'] = getRecipeCategory($recipe['id']);
-        }
-        return $recipe;
-}
+//         // fetch query results as associative array.
+//         $recipe = mysqli_fetch_assoc($result);
+//         if ($recipe) {
+//                 // get the topic to which this recipe belongs
+//                 $recipe['category'] = getRecipeCategory($recipe['id']);
+//         }
+//         return $recipe;
+// }
 
 //this fetches the category of the recipe
 function getRecipeCategory($recipe_id){
@@ -46,14 +46,18 @@ function getRecipeCategory($recipe_id){
 }
 
 
+
+
+
+
 // Returns all recipes under a category
 
-function getPublishedRecipesByCategory($recipe_id) {
+function getPublishedRecipesByCategory($category_id) {
         global $conn;
-        $sql = "SELECT * FROM recipe rc
-                        WHERE rc.id IN 
+        $sql = "SELECT * FROM recipe r
+                        WHERE r.id IN 
                         (SELECT rc.recipe_id FROM recipe_category rc
-                                WHERE rc.category_id=$recipe_id GROUP BY rc.recipe_id 
+                                WHERE rc.category_id=$category_id GROUP BY rc.recipe_id 
                                 HAVING COUNT(1) = 1)";
         $result = mysqli_query($conn, $sql);
         // fetch all recipes as an associative array called $recipes
@@ -66,6 +70,12 @@ function getPublishedRecipesByCategory($recipe_id) {
         }
         return $final_recipes;
 }
+
+
+
+
+
+
 //Returns category name by category id
 function getCategoryNameById($id)
 {
@@ -77,6 +87,35 @@ function getCategoryNameById($id)
 }
 
 
+
+
+
+//Returns a single post
+
+function getRecipe($slug){
+        global $conn;
+        // Get single recipe slug
+        $recipe_slug = $_GET['recipe-slug'];
+        $sql = "SELECT * FROM recipe WHERE slug='$recipe_slug' AND published=true";
+        $result = mysqli_query($conn, $sql);
+
+        // fetch query results as associative array.
+        $recipe = mysqli_fetch_assoc($result);
+        if ($recipe) {
+                // get the category to which this recipe belongs
+                $recipe['category'] = getRecipeCategory($recipe['id']);
+        }
+        return $recipe;
+}
+//Returns all topics
+function getAllCategories()
+{
+        global $conn;
+        $sql = "SELECT * FROM category";
+        $result = mysqli_query($conn, $sql);
+        $categories = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        return $categories;
+}
 
 
 

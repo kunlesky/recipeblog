@@ -1,4 +1,5 @@
 <?php require_once('config.php') ?>
+<?php require_once( ROOT_PATH . '/includes/registration_login.php') ?>
 <?php require_once( ROOT_PATH . '/includes/public_functions.php') ?>
 <?php require_once(ROOT_PATH .'/includes/header.php') ?>
 <?php $recipes = getPublishedRecipes(); ?>
@@ -25,12 +26,12 @@
                 <?php if (isset($recipe['category']['name'])): ?>
                         
                         <a 
-                                href="<?php echo BASE_URL . 'filtered_recipes.php?category=' . $recipe['category']['id'] ?>"
+                href=" filtered_recipes.php?category=' <?php echo $recipe['category']['id'] ?>"
                                 class="btn category">
                                 <?php echo $recipe['category']['name'] ?>
                         </a>
                 <?php endif ?>
-
+                
                 <a href="single_recipe.php?recipe-slug=<?php echo $recipe['slug']; ?>">
                         <div class="post_info">
                                 <h3><?php echo $recipe['title'] ?></h3>
