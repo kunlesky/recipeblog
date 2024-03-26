@@ -18,20 +18,37 @@
                         <hr>
                         
                         <!-- more content still to come here ... -->
-                        <?php foreach ($recipes as $recipes): ?>
+                        <?php foreach ($recipes as $recipe): ?>
         <div class="post" style="margin-left: 0px;">
-                <img src="<?php echo BASE_URL . '/static/images/' . $recipes['image']; ?>" class="post_image" alt="">
-                <a href="single_post.php?post-slug=<?php echo $recipes['slug']; ?>">
+                <img src="<?php echo BASE_URL . '/static/images/' . $recipe['image']; ?>" class="post_image" alt="">
+        <!-- Added this if statement... -->
+                <?php if (isset($recipe['category']['name'])): ?>
+                        
+                        <a 
+                                href="<?php echo BASE_URL . 'filtered_recipes.php?category=' . $recipe['category']['id'] ?>"
+                                class="btn category">
+                                <?php echo $recipe['category']['name'] ?>
+                        </a>
+                <?php endif ?>
+
+                <a href="single_recipe.php?recipe-slug=<?php echo $recipe['slug']; ?>">
                         <div class="post_info">
-                                <h3><?php echo $recipes['title'] ?></h3>
+                                <h3><?php echo $recipe['title'] ?></h3>
                                 <div class="info">
-                                        <span><?php echo date("F j, Y ", strtotime($recipes["created_at"])); ?></span>
+                                        <span><?php echo date("F j, Y ", strtotime($recipe["created_at"])); ?></span>
                                         <span class="read_more">Read more...</span>
                                 </div>
                         </div>
                 </a>
         </div>
 <?php endforeach ?>
+
+
+
+
+
+
+
                 </div>
                 <!-- // Page content -->
 
