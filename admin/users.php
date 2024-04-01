@@ -5,12 +5,12 @@
         $admins = getAdminUsers();
         $roles = ['Admin', 'Author'];                           
 ?>
-<?php include(ROOT_PATH . '/admin/includes/head_section.php'); ?>
+<?php include(ROOT_PATH . '/admin/includes/header.php'); ?>
         <title>Admin | Manage users</title>
 </head>
 <body>
         <!-- admin navbar -->
-        <?php include(ROOT_PATH . '/admin/includes/navbar.php') ?>
+        <?php include(ROOT_PATH . '/admin/includes/nav.php') ?>
         <div class="container content">
                 <!-- Left side menu -->
                 <?php include(ROOT_PATH . '/admin/includes/menu.php') ?>
