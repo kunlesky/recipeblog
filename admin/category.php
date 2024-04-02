@@ -2,10 +2,12 @@
 <?php  include(ROOT_PATH . '/admin/includes/admin_functions.php'); ?>
 <?php include(ROOT_PATH . '/admin/includes/header.php'); ?>
 <!-- Get all categories from DB -->
-<?php $categorys = getAllcategorys();      ?>
-        <title>Admin | Manage categorys</title>
+<?php $category = getAllCategory();    $isEditingCategory = false;  ?>
+        <title>Admin | Manage categories</title>
+
 </head>
 <body>
+        
         <!-- admin navbar -->
         <?php include(ROOT_PATH . '/admin/includes/nav.php') ?>
         <div class="container content">
@@ -24,7 +26,7 @@
                                 <?php endif ?>
                                 <input type="text" name="category_name" value="<?php echo $category_name; ?>" placeholder="Category">
                                 <!-- if editing category, display the update button instead of create button -->
-                                <?php if ($isEditingcategory === true): ?> 
+                                <?php if ($isEditingCategory === true): ?> 
                                         <button type="submit" class="btn" name="update_category">UPDATE</button>
                                 <?php else: ?>
                                         <button type="submit" class="btn" name="create_category">Save Category</button>
@@ -37,7 +39,7 @@
                 <div class="table-div">
                         <!-- Display notification message -->
                         <?php include(ROOT_PATH . '/includes/messages.php') ?>
-                        <?php if (empty($categories)): ?>
+                        <?php if (empty($category)): ?>
                                 <h1>No Category in the database.</h1>
                         <?php else: ?>
                                 <table class="table">
