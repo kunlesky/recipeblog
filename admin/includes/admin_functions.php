@@ -34,14 +34,11 @@ if (isset($_GET['delete-admin'])) {
         deleteAdmin($admin_id);
 }
 
-/* - - - - - - - - - - - -
--  Admin users functions
-- - - - - - - - - - - - -*/
-/* * * * * * * * * * * * * * * * * * * * * * *
-* - Receives new admin data from form
-* - Create new admin user
-* - Returns all admin users with their roles 
-* * * * * * * * * * * * * * * * * * * * * * */
+
+//Admin users functions
+
+
+
 function createAdmin($request_values){
         global $conn, $errors, $role, $username, $email;
         $username = esc($request_values['username']);
@@ -85,11 +82,8 @@ function createAdmin($request_values){
                 exit(0);
         }
 }
-/* * * * * * * * * * * * * * * * * * * * *
-* - Takes admin id as parameter
-* - Fetches the admin from database
-* - sets admin fields on form for editing
-* * * * * * * * * * * * * * * * * * * * * */
+
+
 function editAdmin($admin_id)
 {
         global $conn, $username, $role, $isEditingUser, $admin_id, $email;
@@ -174,9 +168,7 @@ function makeSlug(String $string){
 }
 
 
-/* - - - - - - - - - - 
--  category actions
-- - - - - - - - - - -*/
+
 // if user clicks the create category button
 if (isset($_POST['create_category'])) { createcategory($_POST); }
 // if user clicks the Edit category button
@@ -196,9 +188,7 @@ if (isset($_GET['delete-category'])) {
 }
 
 
-/* - - - - - - - - - - 
--  categorys functions
-- - - - - - - - - - -*/
+
 // get all categorys from DB
 function getAllCategory() {
         global $conn;

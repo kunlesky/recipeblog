@@ -9,10 +9,7 @@ $body = "";
 $featured_image = "";
 $recipe_category = "";
 
-/* - - - - - - - - - - 
--  recipe functions
-- - - - - - - - - - -*/
-// get all recipes from DB
+
 function getAllRecipes()
 {
         global $conn;
@@ -49,9 +46,7 @@ function getRecipeChefById($user_id)
         }
 }
 
-/* - - - - - - - - - - 
--  Post actions
-- - - - - - - - - - -*/
+
 // if user clicks the create post button
 if (isset($_POST['create_recipe'])) { createRecipe($_POST); }
 // if user clicks the Edit post button
@@ -70,9 +65,7 @@ if (isset($_GET['delete-recipe'])) {
         deleteRecipe($recipe_id);
 }
 
-/* - - - - - - - - - - 
--  Post functions
-- - - - - - - - - - -*/
+
 function createRecipe($request_values)
         {
                 global $conn, $errors, $title, $featured_image, $category_id, $body, $published;
@@ -89,7 +82,7 @@ function createRecipe($request_values)
                 // validate form
                 if (empty($title)) { array_push($errors, "Recipe title is required"); }
                 if (empty($body)) { array_push($errors, "Recipe body is required"); }
-                if (empty($topic_id)) { array_push($errors, "Recipe topic is required"); }
+                if (empty($category_id)) { array_push($errors, "Recipe topic is required"); }
                 // Get image name
                 $featured_image = $_FILES['featured_image']['name'];
                 if (empty($featured_image)) { array_push($errors, "Featured image is required"); }
@@ -121,11 +114,7 @@ function createRecipe($request_values)
                 }
         }
 
-        /* * * * * * * * * * * * * * * * * * * * *
-        * - Takes recipe id as parameter
-        * - Fetches the recipe from database
-        * - sets recipe fields on form for editing
-        * * * * * * * * * * * * * * * * * * * * * */
+   
         function editRecipe($role_id)
         {
                 global $conn, $title, $recipe_slug, $body, $published, $isEditingRecipe, $recipe_id;

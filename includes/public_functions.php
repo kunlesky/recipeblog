@@ -17,24 +17,6 @@ function getPublishedRecipes() {
 }
 
 
-// more functions to come here ...
-
-//this will bring a single recipe
-// function getRecipe($slug){
-//         global $conn;
-//         // Get single recipe slug
-//         $recipe_slug = $_GET['recipe-slug'];
-//         $sql = "SELECT * FROM recipe WHERE slug='$recipe_slug' AND published=true";
-//         $result = mysqli_query($conn, $sql);
-
-//         // fetch query results as associative array.
-//         $recipe = mysqli_fetch_assoc($result);
-//         if ($recipe) {
-//                 // get the topic to which this recipe belongs
-//                 $recipe['category'] = getRecipeCategory($recipe['id']);
-//         }
-//         return $recipe;
-// }
 
 //this fetches the category of the recipe
 function getRecipeCategory($recipe_id){
