@@ -1,6 +1,4 @@
-/****************
-*** DEFAULTS
-*****************/
+
 * { margin: 0px; padding: 0px; }
 
 html { height: 100%; box-sizing: border-box; }
@@ -11,7 +9,7 @@ body {
   min-height: 100%;
 }
 /* HEADINGS DEFAULT */
-h1, h2, h3, h4, h5, h6 { color: #444; font-family: 'Averia Serif Libre', cursive; }
+h1, h2, h3, h4, h5, h6 { color: #444; font-family: 'Goudy Bookletter 1911',  sans-serif; }
 a { text-decoration: none; }
 ul, ol { margin-left: 40px; }
 hr { margin: 10px 0px; opacity: .25; }
@@ -20,7 +18,7 @@ hr { margin: 10px 0px; opacity: .25; }
 form h2 {
         margin: 25px auto;
         text-align: center;
-        font-family: 'Averia Serif Libre', cursive;
+        font-family: 'Goudy Bookletter 1911',  sans-serif;
 }
 form input {
         width: 100%;
@@ -66,7 +64,7 @@ form input:focus {
 }
 .navbar ul li {
     float: left;
-    font-family: 'Noto Serif', serif;
+    font-family: 'Goudy Bookletter 1911',  sans-serif;;
 }
 .navbar ul li a {
     display: block;
@@ -269,7 +267,7 @@ font-family: 'Noto Serif', serif;
 .content .content-title {
     margin: 10px 0px;
     color: #374447;
-    font-family: 'Averia Serif Libre', cursive;
+    font-family: 'Goudy Bookletter 1911',  sans-serif;;
 }
 .content .post {
     width: 335px;
@@ -329,9 +327,7 @@ font-family: 'Noto Serif', serif;
 
 
 
-/* * * * * * * * *
-* SINGLE PAGE 
-* * * * * * * * */
+
 .content .post-wrapper {
     width: 70%;
     float: left;
